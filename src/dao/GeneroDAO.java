@@ -28,15 +28,15 @@ public class GeneroDAO {
 		}
 	}
 
-	public static void editar(Genero genero) {
+	public static void editar(int id, String nome) {
 		String sql = "UPDATE genero SET nome = ? WHERE id = ?";	
 		
 		PreparedStatement ps = null;
 		try {
 			Connection conn = Conexao.getConexao();
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, genero.nome);
-			ps.setInt(2, genero.id);
+			ps.setString(1, nome);
+			ps.setInt(2, id);
 			ps.execute();
 		} 
 		catch (SQLException e) {

@@ -33,26 +33,6 @@ public class LivroDAO {
 		}
 	}
 
-	public static void editar(Livro livro) {
-		String sql = "UPDATE livro SET titulo = ?, autor = ?, idGenero = ?, quantidade = ?, isbn = ? WHERE id = ?";	
-		
-		PreparedStatement ps = null;
-		try {
-			Connection conn = Conexao.getConexao();
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, livro.titulo);
-			ps.setString(2, livro.autor);
-			ps.setInt(3, livro.genero.id);
-			ps.setInt(4, livro.quantidade);
-			ps.setString(5, livro.isbn);
-			ps.setInt(6, livro.id);
-			ps.execute();
-		} 
-		catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, e.toString());
-		}
-	}
-
 	public static void excluir(int idLivro) {
 		String sql = "DELETE FROM livro WHERE id = ?";	
 		
@@ -101,5 +81,85 @@ public class LivroDAO {
 			JOptionPane.showMessageDialog(null, e.toString());
 		}
 		return listaLivros;
+	}
+	
+	public static void editarTitulo(int id, String novoTitulo) {
+		String sql = "UPDATE livro SET titulo = ? WHERE id = ?";	
+		
+		PreparedStatement ps = null;
+		try {
+			Connection conn = Conexao.getConexao();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, novoTitulo);
+			ps.setInt(2, id);
+			ps.execute();
+		} 
+		catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.toString());
+		}
+	}
+	
+	public static void editarAutor(int id, String novoAutor) {
+		String sql = "UPDATE livro SET autor = ? WHERE id = ?";	
+		
+		PreparedStatement ps = null;
+		try {
+			Connection conn = Conexao.getConexao();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, novoAutor);
+			ps.setInt(2, id);
+			ps.execute();
+		} 
+		catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.toString());
+		}
+	}
+	
+	public static void editarGenero(int id, int idGenero) {
+		String sql = "UPDATE livro SET idGenero = ? WHERE id = ?";	
+		
+		PreparedStatement ps = null;
+		try {
+			Connection conn = Conexao.getConexao();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, idGenero);
+			ps.setInt(2, id);
+			ps.execute();
+		} 
+		catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.toString());
+		}
+	}
+	
+	public static void editarQuantidade(int id, int quantidade) {
+		String sql = "UPDATE livro SET quantidade = ? WHERE id = ?";	
+		
+		PreparedStatement ps = null;
+		try {
+			Connection conn = Conexao.getConexao();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, quantidade);
+			ps.setInt(2, id);
+			ps.execute();
+		} 
+		catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.toString());
+		}
+	}
+	
+	public static void editarISBN(int id, String isbn) {
+		String sql = "UPDATE livro SET isbn = ? WHERE id = ?";	
+		
+		PreparedStatement ps = null;
+		try {
+			Connection conn = Conexao.getConexao();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, isbn);
+			ps.setInt(2, id);
+			ps.execute();
+		} 
+		catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.toString());
+		}
 	}
 }
